@@ -91,10 +91,10 @@ export default function Home({ navigation }) {
     if (!incidents || incidents.length != 0) {
       return;
     }
-    axios.get("https://7juxc9c5n7.execute-api.ap-southeast-2.amazonaws.com/dev")
+    axios.get("https://z9w0rsou5h.execute-api.ap-southeast-2.amazonaws.com/dev")
     .then(response => {
       console.log(response)
-      setIncidents(response.data.body);
+      setIncidents(response.data.contents);
     })
     .catch(error => {
       console.log(error);

@@ -222,7 +222,7 @@ function Capture({ navigation }) { // Add navigation to the additional pages if 
     console.log(country);
     console.log(city);
     console.log(suburb);
-    axios.post("https://7juxc9c5n7.execute-api.ap-southeast-2.amazonaws.com/dev", {
+    axios.post("https://z9w0rsou5h.execute-api.ap-southeast-2.amazonaws.com/dev", {
     comment: imgComment_API,
     image: imgSrc_API,
     latitude: latitude,
