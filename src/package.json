@@ -36,6 +36,7 @@
     "expo-splash-screen": "~0.8.0",
     "expo-status-bar": "~1.0.3",
     "expo-web-browser": "~8.6.0",
+    "graphql": "^15.5.0",
     "link": "^0.1.5",
     "material-ui": "^0.20.2",
     "moment": "^2.29.1",
