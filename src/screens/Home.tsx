@@ -1,6 +1,9 @@
 import React from 'react';
 import { Auth } from 'aws-amplify';
 
+// React Native
+import { Pressable } from 'react-native';
+import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 
 // Material UI
@@ -12,27 +15,26 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import { Pressable } from 'react-native';
-import Paper from '@material-ui/core/Paper';
-import { Redirect } from 'react-router-dom';
-import grey from '@material-ui/core/colors/grey';
 
+// Styling
+import { makeStyles } from '@material-ui/core/styles';
+import './Home.css';
 
 
 // Copyright
 function Copyright() {
 	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © '}
+		<Typography variant="body">
+			{'Copyright \u00A9 '}
 			<Link color="inherit" href="https://material-ui.com/">
-				NZ Interns AWS
+				New Zealand AWS Interns
 			</Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
@@ -43,33 +45,36 @@ function Copyright() {
 // Styles
 const useStyles = makeStyles((theme) => ({
 	root: {
-		backgroundColor: 'red',
-		flexGrow: 1
+		flexGrow: 1,
 	},
-	
-	icon: {
-		marginRight: theme.spacing(2)
+
+	navBar: {
+		backgroundColor: '#3C3C3C',
+		flexGrow: 1,
+		justifyContent: 'space-around',
 	},
 	
 	heroContent: {
 		backgroundColor: theme.palette.background.paper,
-		padding: theme.spacing(8, 0, 6),
+		padding: theme.spacing('4rem', 0, 0),
 		flexGrow: 1,
 	},
 	
 	heroButtons: {
 		marginTop: theme.spacing(4),
+		backgroundColor: 'red',
 	},
 	
 	cardGrid: {
 		paddingTop: theme.spacing(8),
 		paddingBottom: theme.spacing(8),
+		backgroundColor: theme.palette.background.secondary
 	},
 	
 	card: {
 		height: '100%',
 		display: 'flex',
-		flexDirection: 'column',
+		flexDirection: 'column'
 	},
 	cardMedia: {
 		paddingTop: '56.25%', // 16:9
@@ -80,8 +85,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	
 	footer: {
-		backgroundColor: theme.palette.background.paper,
-		padding: theme.spacing(6),
+		backgroundColor: '#3C3C3C',
+		color: theme.palette.background.paper,
+		padding: theme.spacing(6)
 	},
 	
 	title: {
@@ -89,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	
 	paper: {
-		padding: theme.spacing(2),
+		padding: theme.spacing('1rem'),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
 	}
@@ -97,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Logo = () => {
 	return (
-		<svg class="logo-svg" width="81%" viewBox="0 0 5821 1024" fill="#FFFFFF">      		
+		<svg class="logo-svg" width="12rem" viewBox="0 0 5821 1024" fill="#FFFFFF">      		
 			<path d="M374.354 785.229c206.786 0 374.381-167.608 374.381-374.381 0-206.76-167.621-374.354-374.381-374.354s-374.354 167.608-374.354 374.354c-0.013 206.773 167.595 374.381 374.354 374.381v0zM186.529 203.798h73.001v38.411c38.768-26.908 77.219-41.016 115.392-42.206 29.023 0 57.015 7.259 83.883 21.804 26.934 14.558 48.593 34.339 64.949 59.263 16.343 25.004 24.554 51.964 24.554 80.961 0 31.509-7.881 59.937-23.602 85.298-15.722 25.414-36.904 45.406-63.56 60.123-26.67 14.677-55.799 22.888-87.44 24.594v1.362c7.986 3.411 24.012 11.213 48.143 23.377s44.679 21.248 61.643 27.265 34.008 9.018 51.158 9.018c12.575 0 21.843-1.864 27.794-5.553l4.998 5.553c-10.975 10.102-25.85 15.126-44.573 15.126-15.312 0-30.914-1.904-46.821-5.593-15.96-3.729-29.896-7.881-41.783-12.403-11.953-4.522-30.861-11.953-56.738-22.359-47.826-22.425-87.162-43.185-117.971-62.212v55.442c0 8.727 0.965 15.007 2.949 18.802 1.957 3.768 5.263 6.334 9.996 7.643 6.862 0.82 13.87 1.811 21.143 3.001 4.496-0.82 10.419-1.216 17.745-1.216v11.332h-119.848v-11.305h33.202v-347.711c0-17.665-10.895-26.498-32.686-26.498h-5.553l0.026-11.318zM361.978 218.131c-41.082 0-75.223 16.039-102.448 48.090v216.729l6.175-9.917c41.995 30.346 79.229 45.525 111.796 45.525 24.409 0 47.165-6.558 68.387-19.675 21.182-13.117 38.015-30.782 50.457-52.916 12.429-22.134 18.683-45.922 18.683-71.388-0.727-27.238-7.986-52.705-21.91-76.465-13.963-23.734-32.435-42.761-55.521-57.095s-48.315-21.976-75.619-22.888v0 0z"></path>
 			<path d="M1585.558 105.304v-58.827h16.66v260.601h-16.66c0-47.535-2.34-83.262-6.942-107.181-4.641-23.946-15.034-44.070-31.179-60.413-16.317-16.515-39.905-29.777-70.714-39.813-30.808-10.049-61.709-15.074-92.689-15.074-59.924 0-113.052 15.166-159.344 45.498-46.305 30.319-81.86 69.735-106.692 118.248-24.832 48.54-37.234 98.481-37.234 149.863 0 42.484 7.695 84.029 23.1 124.741s37.327 77.298 65.808 109.813c28.428 32.527 62.013 58.126 100.755 76.849 38.715 18.71 80.049 28.058 123.987 28.058 45.789 0 87.255-8.793 124.357-26.392 37.142-17.586 69.087-39.786 95.836-66.535l17.678 22.677c-33.334 30.24-71.771 53.71-115.287 70.436-43.515 16.713-87.85 25.572-132.965 26.59-64.301 0-123.947-15.735-178.913-47.217s-98.573-73.914-130.81-127.279c-32.236-53.353-48.355-111.016-48.355-172.989 0-50.668 10.393-98.097 31.165-142.3 20.786-44.189 49.174-82.389 85.126-114.652 35.939-32.236 76.677-57.147 122.215-74.733 45.525-17.586 92.28-26.392 140.264-26.392 65.173-0.040 125.441 15.457 180.83 46.424z"></path>
 			<path d="M1710.814 725.014v-352.365l-36.362 42.153-12.389-12.376 109.601-129.448 12.389 12.575-26.762 29.856v367.188c0 14.32 2.367 24.647 7.061 31.073 4.707 6.386 13.394 10.856 26.022 13.381 3.359-1.349 7.841-1.997 13.394-1.997v18.683h-139.656v-18.683l46.715-0.040zM1731.269 95.202c10.446 0 20.111 4.073 29.037 12.178 8.925 8.092 13.394 17.546 13.394 28.375 0 12.337-4.244 22.452-12.76 30.398-8.515 7.96-18.406 11.9-29.671 11.9-12.945 0-23.232-3.808-30.795-11.398-7.576-7.603-11.371-17.903-11.371-30.901 0-10.975 4.125-20.482 12.403-28.494 8.211-8.039 18.154-12.059 29.764-12.059z"></path>
@@ -114,9 +120,9 @@ const Logo = () => {
   }
 
 
-// Main Home Page
+// Home Page
 export default function Home({ navigation }) {
-	const classes = useStyles();
+	const classes = useStyles(); // define classes object
 
 	// API Get Method to get the incidents
 	const [incidents, setIncidents] = React.useState([]);
@@ -154,71 +160,75 @@ export default function Home({ navigation }) {
 
 	// Renders the App
 	return (
-	<React.Fragment>
+		<React.Fragment>
 		<CssBaseline />
 		{/* Header */}
 		<AppBar position="static">
-		<Toolbar color="red" backgroundColor="black">
-			<Logo />
-			<Button color="inherit" onClick={() => signOut()}>Sign Out</Button>
-		</Toolbar>
+			<Toolbar className={classes.navBar}>
+				<Logo />
+				<Button color="inherit" onClick={() => signOut()}>Sign out</Button>
+			</Toolbar>
 		</AppBar>
+
 		{/* Main */}
 		<main>
-		{/* Setting the header and button to report a new incident */}
-		<div className={classes.heroContent}>
-			<Container maxWidth="sm">
-			<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-				Incidents
-			</Typography>
-			<Typography variant="h5" align="center" color="textSecondary" paragraph>
-				You can report common issues using our simple application. Requests are sent to the right team, guaranteeing a fast response time.
-			</Typography>
-			<div className={classes.root}>
-				<Grid container spacing={3}>
-					<Grid item xs={12}>
-						<Paper className={classes.paper} elevation={0}>
-						<Button variant="contained" color="primary" onClick={() => navigation.navigate('Capture')}> {/* Use Navigate to navigate through the pages*/}
-							Report an Incident
-						</Button>
-						</Paper>
-					</Grid>
-				</Grid>
+			{/* Setting the header and button to report an issue */}
+			<div className={classes.heroContent}>
+					<Container maxWidth="lg">
+					<Typography variant="h1" component="h2" gutterBottom>
+						Report an Issue
+					</Typography>
+					<Typography variant="body1" color="textSecondary" paragraph>
+						You can report common issues using our simple application. Requests are sent to the right team, guaranteeing a fast response time.
+					</Typography>
+					
+					<div className={classes.root}>
+						<Grid container spacing={3}>
+							<Grid item xs={12}>
+								<Paper className={classes.paper} elevation={0}>
+									{/*Navigate directs to another page*/}
+									<Button variant="contained" id="report" onClick={() => navigation.navigate('Capture')}>
+										Report an issue
+									</Button>
+								</Paper>
+							</Grid>
+						</Grid>
+					</div>
+				</Container>
 			</div>
-			</Container>
-		</div>
-		{/* Setting the incidents */}
-		<Container className={classes.cardGrid} maxWidth="md">
-			<Grid container spacing={4} onLoad={apiMethodGet()}>
-			{
-				incidents && incidents.map((incident) => (
-				<Grid item key={incident.key} xs={12} sm={6} md={4}>
-				<Card className={classes.card}>
-					<CardMedia
-						className={classes.cardMedia}
-						image={incident.url}
-						title={incident.key}
-					/>
-					<CardContent className={classes.cardContent}>
-						<Typography gutterBottom variant="h5" component="h2">
-							Incident {incident.key}
-						</Typography>
-						<Typography>
-							{getDateDifference(incident.date)}
-						</Typography>
-					</CardContent>
-				</Card>
+			{/* Setting the incidents */}
+			<Container className={classes.cardGrid} >
+				<Grid container spacing={4} onLoad={apiMethodGet()}>
+				{
+					incidents && incidents.map((incident) => (
+					<Grid item key={incident.key} xs={12} sm={6} md={4}>
+					<Card className={classes.card}>
+						<CardMedia
+							className={classes.cardMedia}
+							image={incident.url}
+							title={incident.key}
+						/>
+						<CardContent className={classes.cardContent}>
+							<Typography gutterBottom variant="h5" component="h2">
+								Issue {incident.key.slice(0,16)}
+							</Typography>
+							<Typography>
+								{getDateDifference(incident.date)}
+							</Typography>
+						</CardContent>
+					</Card>
+					</Grid>
+				))}
 				</Grid>
-			))}
-			</Grid>
-		</Container>
+			</Container>
 		</main>
-		<footer className={classes.footer}>
-			<Typography variant="h6" align="center" gutterBottom>
-				Incident Reports
+
+		<footer className={classes.footer} align="center">
+			<Typography variant="h5" gutterBottom>
+				CitizenWatch Application
 			</Typography>
-			<Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-				Report incidents within your local area.
+			<Typography variant="body" component="p" >
+				Report issues within your local area.
 			</Typography>
 			<Copyright />
 		</footer>

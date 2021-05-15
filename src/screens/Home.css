@@ -1,0 +1,6 @@
+/* Material UI Overrides */
+#report {
+    background-color: #6B6F72;
+    padding: 0.5 1rem;
+    text-transform: none;
+}

@@ -1,0 +1,21 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify6884927544374-staging-32441-authRole",
+      "UnauthRoleArn": "arn:aws:iam::105657761514:role/amplify-amplify6884927544374-staging-32441-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::105657761514:role/amplify-amplify6884927544374-staging-32441-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-amplify6884927544374-staging-32441-deployment",
+      "UnauthRoleName": "amplify-amplify6884927544374-staging-32441-unauthRole",
+      "StackName": "amplify-amplify6884927544374-staging-32441",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:105657761514:stack/amplify-amplify6884927544374-staging-32441/16aa08d0-b52d-11eb-a98f-0261c15c40b8",
+      "AmplifyAppId": "d28vxokivki2cg",
+      "AuthTriggerTemplateURL": ""
+    },
+    "categories": {
+      "auth": {
+        "citizenwatch": {}
+      }
+    }
+  }
+}
