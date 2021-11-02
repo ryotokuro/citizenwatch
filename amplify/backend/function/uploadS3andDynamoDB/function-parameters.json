@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "storage": {
+      "s3ad120471": [
+        "create",
+        "read",
+        "update"
+      ],
+      "metadata": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

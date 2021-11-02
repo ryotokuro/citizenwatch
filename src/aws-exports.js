@@ -7,7 +7,16 @@ const awsmobile = {
     "aws_cognito_region": "ap-southeast-2",
     "aws_user_pools_id": "ap-southeast-2_EqrHo2f5c",
     "aws_user_pools_web_client_id": "47sc4krtckdrin3utuv1150b8u",
-    "oauth": {}
+    "oauth": {},
+    "aws_user_files_s3_bucket": "citizenwatch063fe68b078c4f1fb86f5a9ff60930d632441-staging",
+    "aws_user_files_s3_bucket_region": "ap-southeast-2",
+    "aws_dynamodb_all_tables_region": "ap-southeast-2",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "photo_metadata-staging",
+            "region": "ap-southeast-2"
+        }
+    ]
 };
 
 
